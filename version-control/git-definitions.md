@@ -22,3 +22,5 @@ On the first step of the cycle, new files that are created or old files modified
 ### What is a merge conflict?
 
 Merge conflicts are rare on git, specially when teams are organized in the way they split their work. Even when two or more members of a team are working on the same file, Git is quite good at understand how to merge all edits. If two members of a team end up editing the same line of code in different ways, a conflict will happen when attempting to merge branches. Git will recognize the conflict and signal where in the code the conflict is, making it easy to solve it by hand.
+
+*By Julian Boralli on 08/08/2016.*
