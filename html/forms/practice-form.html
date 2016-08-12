@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Julia/Julian Form</title>
+</head>
+<body>
+	<header>
+		<h1> Practice Form - Assignment 2.4 </h1>
+	</header>
+	<main>
+		<h2> Choose your favorite food:</h2>
+		<form action="success.html" method="post">
+			<div>
+				<p> Personal Information:</p>
+				<label>First Name:</label>
+				<input type="text" name="first-name" placeholder="First Name">
+				<label>Last Name:</label>
+				<input type="text" name="last-name" placeholder="Last Name">
+			</div>
+			<br>
+			<div>
+				<label> Your food image:</label>
+				<input type="file" name="food-image">
+			</div>
+			<br>
+			<div>
+				<label>Dessert:</label>
+				<select name="dessert">
+					<option value="ice-cream">Ice Cream</option>
+					<option value="cake">Cake</option>
+					<option value="cookies">Cookies</option>
+				</select>
+			</div>	
+			<br>
+			<div>
+				<label>Main Course:</label>
+				<br>
+				<textarea name="main-course" rows="5" cols="50" placeholder="please write here"></textarea>
+			</div>
+			<br>
+			<div>
+				<label>Appetizers:</label>
+				<br>
+				<select name="appetizers" size="3" multiple="multiple">
+					<option value="salad">Salad</option>
+					<option value="fries">Fries</option>
+					<option value="oysters" selected="selected">Oysters</option>
+				</select>
+				<p>Press `command` to select multiple</p>
+			</div>	
+			<button type="submit">Click to submit</button>
+		</form>
+	</main>
+	<footer>
+		<em>By Julian and Julian</em>
+	</footer>
+</body>
+</html>
