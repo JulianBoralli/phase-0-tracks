@@ -30,3 +30,58 @@ figcaption {
   font-style: italic;
   text-align: right;
 }
+
+body {
+  max-width: 960px;
+  margin: auto;
+}
+
+#external-links {
+  width: 20%;
+  min-width: 120px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+main {
+  width: 75%;
+  display: inline-block;
+  min-width: 400px;
+  padding-left: 50px;
+}
+
+#flex {
+  display: flex;
+}
+
+@media screen and (max-width: 600px) {
+  #flex {
+    flex-direction: column;
+  }
+  #external-links {
+    width: 100%;
+    min-width: 120px;
+    padding-left: 50px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  body {
+    font-size: 0.8em;
+  }
+  #external-links {
+    padding-left: 0px;
+  }
+  main {
+    padding-left: 0px;
+  }
+}
+
+
+/*@media screen and (max-width: 500px) {
+  body {
+    background-color: hotpink;
+  }
+}
+
+*/
