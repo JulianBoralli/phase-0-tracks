@@ -34,10 +34,19 @@ def interview
 		age = nil
 	end
 
-	hamster = [name, loud, fur_color, adoption, estimate, age]
-	puts hamster
-	puts age
+	puts "\nHere are your answers:" 
+	
+	puts "\nHamster's name is #{name}.
+Its level of loudness is #{loud}.
+Its fur color is #{fur_color}.
+Is the hamster ready for adoption?: #{adoption}."
 
+	if estimate == "yes"
+		puts "The hamster's age is #{age}."
+  else 
+  	puts "The hamster's age cannot be estimated."
+  end
 end
+
 
 interview
