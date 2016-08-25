@@ -5,6 +5,7 @@ class Vampire
 	@@vampires = []
 	attr_accessor :name , :age , :year , :validate_age, :garlic_bread, :insurance, :allergies, :result
 
+	# Initializes an empty array used to store allergy information
 	def initialize
 		@allergies = []
 	end
@@ -31,13 +32,29 @@ def interview (vampire)
 	puts "What's your name?"
 	vampire.name = gets.chomp
 
-	# Ask for age input
-	puts "How old are you?"
-	vampire.age = gets.to_i
+	# Ask for age input with number validation
+	while true
+		puts "How old are you?"
+		vampire.age = gets.chomp
+		if vampire.age == vampire.age.to_i.to_s
+			vampire.age = vampire.age.to_i
+			break
+		else
+			puts "Please provide a valid number."
+		end
+	end
 
-	# Ask for year born
-	puts "Which year were you born?"
-	vampire.year = gets.to_i
+	# Ask for year input with number validation
+	while true
+		puts "Which year were you born?"
+		vampire.year = gets.chomp
+		if vampire.year == vampire.year.to_i.to_s
+			vampire.year = vampire.year.to_i
+			break
+		else
+			puts "Please provide a valid number."
+		end
+	end
 
 	# Check if year and age are consistent
 	if Time.now.year - vampire.year == vampire.age || Time.now.year - vampire.year == (vampire.age + 1)
@@ -119,17 +136,18 @@ while i < quantity do
 	vampire = assessment(vampire)
 
 	# Prints result of interview and asessment
-	puts "Thanks #{vampire.name} for telling me you are #{vampire.age} years old, was born in #{vampire.year}."
+	puts "Thanks #{vampire.name} for telling me you are #{vampire.age} years old and was born in #{vampire.year}."
 	puts "You also said #{vampire.garlic_bread} to garlic bread and #{vampire.insurance} to insurance"
-	puts "The change of the person being a vampire is: #{vampire.result}"
+	puts "The chance of you being a vampire is: #{vampire.result}"
 	puts "These are your allergies: #{vampire.allergies.to_s}"
 
-	# Prints all the vampires in a string/array format.
-	puts Vampire.vampires?.to_s
 
 	# Adds the new instance to the @@vampires class variable, which 
 	# is an array of all the vampire objects create.
 	Vampire.add_vampire(vampire)
+
+	# Prints all the vampires in a string/array format.
+	# puts Vampire.vampires?.to_s
 
 	# Adds to the i counter for the next iteration
 	i += 1
