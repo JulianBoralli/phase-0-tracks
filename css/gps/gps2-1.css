@@ -1,0 +1,29 @@
+body {
+	font-family: Helvetica, sans-serif;
+	background-color: lightgrey;
+	margin: 0px;
+}
+
+.column-1 {
+	float: left;
+	width: 45%;
+	padding: 2.5%;
+}
+
+.column-2 {
+	float: left;
+	width: 45%;
+	padding: 2.5%;
+}
+
+header {
+	background-color: lightblue; 
+	padding: 2.5%;
+	
+}
+
+footer {
+	background-color: grey;
+	clear: left;
+	padding: 2.5%;
+}
