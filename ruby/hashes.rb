@@ -63,14 +63,87 @@ def new_client
 	return new_client
 end
 
-def update_client
-	
+# Updates the user information
+# The method receives a hash with previous client info as a parameter
+def update_client(client)
 
+	# Updates specific information according to user input
+	loop do
+
+		puts "Which of the following information would you like to update: (type \"exit\" to finish)"
+		# prints all key values of the hash
+		client.each {|k, v| puts k}
+		
+		case gets.chomp.downcase
+		
+		when "exit"
+			break
+
+		when "name"
+			puts "What's the client's full name?"
+			client[:name] = gets.chomp.capitalize
+
+		when "age"
+			# Prompts for information and uptades the hash
+			puts "What's the client's age?"
+			client[:age] = gets.chomp.to_i	
+
+		when "number_kids"
+			# Prompts for information and uptades the hash
+			puts "How many kids does the client have?"
+			client[:number_kids] = gets.chomp.to_i
+
+		when "decor_theme"
+			# Prompts for information and uptades the hash
+			puts "Which decor theme best suits the client?"
+			client[:decor_theme] = gets.chomp.downcase
+
+		when "open_space"
+			# Prompts for information and uptades the hash
+			puts "Does the client like open spaces? (yes or no)"
+			if gets.chomp.downcase == "yes" 
+				client[:open_space] = true
+			else
+				client[:open_space] = false
+			end
+
+		when "favorite_colors"
+			# Prompts for information and uptades the hash
+			# For colors, the program asks the user to add colors 
+			# On the background it adds everything to an array inside the hash
+			client[:favorite_colors].clear
+			loop do
+				puts "What are the client's favorite color? (type \"exit\" to finish)"
+				color = gets.chomp.downcase 
+				if color == "exit" 
+					break
+				else
+					client[:favorite_colors] << color
+				end
+			end		
+
+		else
+			puts "Sorry, I didn't understand your request"		
+
+		end
+
+	end
+
+return client
+
+end
 
 
 # Driver code
-puts new_client
+client = new_client
+puts "This is what I've got so far:"
+# Prints the hash information on the screen in a more readable format
+client.each {|k, v| puts "#{k} is #{v}" }
 puts "Would you like to update any information? (yes or no)"
-update_client if gets.chomp.downcase == "yes"
-
-
+if gets.chomp.downcase == "yes"
+	client = update_client(client) 
+	puts "Here is the updated information:"
+	# Prints the hash information on the screen in a more readable format
+	client.each {|k, v| puts "#{k} is #{v}" }
+end
+puts "Thanks for adding this new client information!"
