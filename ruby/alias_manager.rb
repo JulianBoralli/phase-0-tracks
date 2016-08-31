@@ -52,6 +52,10 @@ puts "Hello my dear spy, ready for your next mission?"
 # Creates an empty array of spy names
 spy_names = []
 
+# This lool prompts user for input 
+# And assigns the real and spy name as a hash
+# to the spy_names array.
+# The loop runs until the user types "quit"
 loop do
 	# Grab name from user
 	puts "Please write both a first and last name: (or \"quit\" to exit)"
