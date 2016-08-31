@@ -66,23 +66,26 @@ loop do
 	# Assigns a string enumerator to the variable name_enum
 	name_enum = name.each_char
 	
-	#This line of code assigns a hash with real name and spy name to the
-	# spy_names array. The import part of this code is the call for
-	# the spy method, sending the string enumerator as an argument.
-	# Since the method returns characters in an array, join will rebuild the string
-	# followed by split to separate first and last name into a new array.
-	spy_names << {real_name: name.split, spy_name: spy(name_enum).join.split}
+	# Evaluates if user typed less or more than 2 names 
+	if name.split.length != 2 || name == nil
+		puts "WRONG INPUT!!!"
+	else
+		#This line of code assigns a hash with real name and spy name to the
+		# spy_names array. The import part of this code is the call for
+		# the spy method, sending the string enumerator as an argument.
+		# Since the method returns characters in an array, join will rebuild the string
+		# followed by split to separate first and last name into a new array.
+		spy_names << {real_name: name.split, spy_name: spy(name_enum).join.split}
+	end
 end
 
 # Check to see if any names were given
 if !spy_names.empty?
-# Prints real name and the spy names to the screen with inverted first and last name
+ # Prints real name and the spy names to the screen with inverted first and last name
 	spy_names.each do |hash|
 		# The if clause checks to see if there is an actual name and not nil value
 		# If the user just pressed enter without writing anything the value would be nil
-		if hash[:real_name][0] != nil
-			puts "Spy #{hash[:real_name][0].capitalize} #{hash[:real_name][1].capitalize} is #{hash[:spy_name][1].capitalize} #{hash[:spy_name][0].capitalize}."
-		end
+		puts "Spy #{hash[:real_name][0].capitalize} #{hash[:real_name][1].capitalize} is #{hash[:spy_name][1].capitalize} #{hash[:spy_name][0].capitalize}."
 	end
 	# Ends the program with a message if user information was added
 	puts "Have a great mission, I'll see u soon!"
