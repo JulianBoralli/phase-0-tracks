@@ -73,9 +73,9 @@ ethnicity = ["Black", "Latino", "Asian", "White"]
 # Santas Array
 santas = []
 
-# Creating 100 instances of Santa using randon arguments
+# Creating 100 instances of Santa using random arguments
 100.times do |i|
-	santas << Santa.new(gender[rand(gender.length)], ethnicity[rand(ethnicity.length)])
+	santas << Santa.new(gender.sample, ethnicity.sample)
 	rand(141).times {santas[i].celebrate_birthday}
 end
 
@@ -84,10 +84,10 @@ santas.each do |santa|
 	puts "Age is: #{santa.age}"
 	puts "Gender is: #{santa.gender}"
 	puts "Reassigning gender:"
-	santa.gender = gender[rand(gender.length)]
+	santa.gender = gender.sample
 	puts "New gender is: #{santa.gender}"
 	puts "Reindeer Ranking: #{santa.reindeer_ranking}"
-	reindeer = santa.reindeer_ranking[rand(santa.reindeer_ranking.length)]
+	reindeer = santa.reindeer_ranking.sample
 	puts "Getting mad at #{reindeer}"
 	santa.get_mad_at(reindeer)
 	puts "New Reindeer Ranking: #{santa.reindeer_ranking}"
