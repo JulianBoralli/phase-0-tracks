@@ -1,5 +1,8 @@
 class Santa
 
+	attr_reader :age , :ethnicity, :reindeer_ranking
+	attr_accessor :gender
+
 	def initialize(gender, ethnicity)
 		puts "Initializing Santa instance ..."
 		@gender = gender
@@ -8,25 +11,25 @@ class Santa
 		@reindeer_ranking = ["Rudolph", "Dasher", "Dancer", "Prancer", "Vixen", "Comet", "Cupid", "Donner", "Blitzen"] 
 	end
 
-	# Gender Setter
-	def gender=(gender)
-		@gender = gender
-	end
+	# # Gender Setter
+	# def gender=(gender)
+	# 	@gender = gender
+	# end
 
-	# Gender Getter
-	def gender
-		@gender
-	end
+	# # Gender Getter
+	# def gender
+	# 	@gender
+	# end
 
-	# Age Getter
-	def age
-		@age
-	end
+	# # Age Getter
+	# def age
+	# 	@age
+	# end
 
-	# Ethnicity Getter
-	def ethnicity
-		@ethnicity
-	end
+	# # Ethnicity Getter
+	# def ethnicity
+	# 	@ethnicity
+	# end
 
 	def speak
 		puts "Ho, ho, ho! Haaaappy holidays!"
@@ -70,10 +73,10 @@ ethnicity = ["Black", "Latino", "Asian", "White"]
 # Santas Array
 santas = []
 
-# Creating 10 instances of Santa using randon arguments
-10.times do |i|
+# Creating 100 instances of Santa using randon arguments
+100.times do |i|
 	santas << Santa.new(gender[rand(gender.length)], ethnicity[rand(ethnicity.length)])
-	i.times {santas[i].celebrate_birthday}
+	rand(141).times {santas[i].celebrate_birthday}
 end
 
 # Prints information about each instance
@@ -83,6 +86,11 @@ santas.each do |santa|
 	puts "Reassigning gender:"
 	santa.gender = gender[rand(gender.length)]
 	puts "New gender is: #{santa.gender}"
+	puts "Reindeer Ranking: #{santa.reindeer_ranking}"
+	reindeer = santa.reindeer_ranking[rand(santa.reindeer_ranking.length)]
+	puts "Getting mad at #{reindeer}"
+	santa.get_mad_at(reindeer)
+	puts "New Reindeer Ranking: #{santa.reindeer_ranking}"
 	puts "--------------------------------"
 end
 
