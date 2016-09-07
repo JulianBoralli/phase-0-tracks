@@ -27,8 +27,12 @@ end
 # steps: receive input and push/add new item into hash. 
 # output: updated hash.
 
-def add(groceries_list, item, quantity)
-	groceries_list[item] = quantity
+def add(groceries_list)
+	puts "Please provide a list of items and quantities separated by commas to add to your groceries list." 
+	puts "Example: beans, 2, avocado, 3, apples, 8"
+	add_list = gets.chomp.downcase	
+	add_hash =  create_list(add_list)
+	groceries_list.merge!(add_hash)
 end
 
 # Method to remove an item from the list
@@ -67,7 +71,22 @@ loop do
 	input = gets.chomp.downcase
 	case input
 	when "add"
-		puts "add"
+		groceries_list = add(groceries_list)
+		puts "Thanks for adding these items, your updated list is:"
+		p groceries_list
+	when "remove"
+		puts "remove"
+	when "update"
+		puts "update"
+	when "print"
+		puts "print"
+	when "done"
+		puts "Thanks for using this program, here is your final groceries list:"
+		p groceries_list
+		break
+	else
+		puts "WRONG INPUT :( Please try again ..."
+	end
 end
 
 
