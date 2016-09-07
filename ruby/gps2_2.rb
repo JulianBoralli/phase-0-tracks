@@ -27,10 +27,7 @@ end
 # steps: receive input and push/add new item into hash. 
 # output: updated hash.
 
-def add(groceries_list)
-	puts "Please provide a list of items and quantities separated by commas to add to your groceries list." 
-	puts "Example: beans, 2, avocado, 3, apples, 8"
-	add_list = gets.chomp.downcase	
+def add(groceries_list, add_list)
 	add_hash =  create_list(add_list)
 	groceries_list.merge!(add_hash)
 end
@@ -40,19 +37,31 @@ end
 # steps: receive input and delete item into hash. 
 # output: updated hash
 
-# def remove(groceries_list, item)
-# 	groceries_list[item].delete
-# end
+def remove(groceries_list, delete_item)
+	groceries_list.delete(delete_item.to_sym) {|item| puts "#{item} not found!"}
+	return groceries_list
+end
 
 # Method to update the quantity of an item
 # input: item name and quantity 
 # steps: find item and update the quantity
 # output: updated hash
 
+def update(groceries_list, update_item, update_quantity)
+	groceries_list[update_item.to_sym] = update_quantity
+	return groceries_list
+end
+
 # Method to print a list and make it look pretty
 # input: Hash unless the hash is something in the driver code (accessible everywhere
 # steps: Format information
 # output: print info
+
+def print(groceries_list)
+	groceries_list.each do |item, quantity|
+		puts "#{item}: #{quantity}"
+	end
+end
 
 # Driver Code
 
@@ -70,23 +79,50 @@ loop do
 	puts "Type \"done\" to exit this program;"
 	input = gets.chomp.downcase
 	case input
+
 	when "add"
-		groceries_list = add(groceries_list)
+		puts "Please provide a list of items and quantities separated by commas to add to your groceries list." 
+		puts "Example: beans, 2, avocado, 3, apples, 8"
+		add_list = gets.chomp.downcase	
+		groceries_list = add(groceries_list, add_list)
 		puts "Thanks for adding these items, your updated list is:"
 		p groceries_list
+
 	when "remove"
-		puts "remove"
+		puts "Which items do you want to delete?"
+		delete_item = gets.chomp.downcase
+		groceries_list = remove(groceries_list, delete_item)
+		puts "Your current list is:"
+		p groceries_list
+
 	when "update"
-		puts "update"
+		puts "Which items do you want to update?"
+		update_item = gets.chomp.downcase
+		if groceries_list[update_item.to_sym]
+			puts "You currently have #{groceries_list[update_item.to_sym]} #{update_item} in your list."
+			puts "What's the new quantity?"
+			update_quantity = gets.chomp.to_i
+			groceries_list = update(groceries_list, update_item, update_quantity)
+			puts "Thanks for this update, your current list is:"
+			p groceries_list
+		else
+			puts "Sorry, #{update_item} is not currently in your list!"
+		end
+
 	when "print"
-		puts "print"
+		puts "---------------------------------------------"
+		puts "Here are the items and quantities in your list:"
+		print(groceries_list)
+		puts "---------------------------------------------"
 	when "done"
 		puts "Thanks for using this program, here is your final groceries list:"
 		p groceries_list
 		break
+
 	else
 		puts "WRONG INPUT :( Please try again ..."
 	end
+
 end
 
 
