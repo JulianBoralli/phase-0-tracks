@@ -39,7 +39,6 @@ end
 
 def remove(groceries_list, delete_item)
 	groceries_list.delete(delete_item.to_sym) {|item| puts "#{item} not found!"}
-	return groceries_list
 end
 
 # Method to update the quantity of an item
@@ -49,7 +48,6 @@ end
 
 def update(groceries_list, update_item, update_quantity)
 	groceries_list[update_item.to_sym] = update_quantity
-	return groceries_list
 end
 
 # Method to print a list and make it look pretty
@@ -91,7 +89,7 @@ loop do
 	when "remove"
 		puts "Which items do you want to delete?"
 		delete_item = gets.chomp.downcase
-		groceries_list = remove(groceries_list, delete_item)
+		remove(groceries_list, delete_item)
 		puts "Your current list is:"
 		p groceries_list
 
@@ -102,7 +100,7 @@ loop do
 			puts "You currently have #{groceries_list[update_item.to_sym]} #{update_item} in your list."
 			puts "What's the new quantity?"
 			update_quantity = gets.chomp.to_i
-			groceries_list = update(groceries_list, update_item, update_quantity)
+			update(groceries_list, update_item, update_quantity)
 			puts "Thanks for this update, your current list is:"
 			p groceries_list
 		else
