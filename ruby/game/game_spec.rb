@@ -21,4 +21,21 @@ describe WordGame do
     expect(word_game.incomplete_word).to eq "_______"
   end
  
+ it "check for counter and max guesses" do
+    expect(word_game.include?("t")).to eq true
+    expect(word_game.count_guesses).to eq 1
+    expect(word_game.max_guesses).to eq 21
+  end
+
+
+  it "check for won status" do
+    expect(word_game.include?("t")).to eq true
+    expect(word_game.won?).to eq false
+    expect(word_game.include?("e")).to eq true
+    expect(word_game.include?("s")).to eq true
+    expect(word_game.include?("i")).to eq true
+    expect(word_game.include?("n")).to eq true
+    expect(word_game.include?("g")).to eq true
+    expect(word_game.won?).to eq true
+  end
 end

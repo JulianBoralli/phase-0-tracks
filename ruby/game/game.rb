@@ -22,7 +22,7 @@
 
 class WordGame
 
-	attr_reader :incomplete_word, :max_guesses, :count_guesses
+	attr_reader :incomplete_word, :max_guesses, :count_guesses, :guessed_characters
 
 	def initialize(word)
 		@complete_word = word
@@ -30,10 +30,12 @@ class WordGame
 		@count_guesses = 0
 		@incomplete_word = ""
 	  word.length.times { @incomplete_word << "_"}
+	  @guessed_characters = ""
 	end
 
 	def include?(character)
 		@count_guesses += 1
+		guessed_characters << character
 		if @complete_word.include?(character)
 			c_index = 0
 			@complete_word.each_char do |c|
@@ -59,15 +61,25 @@ end
 
 # Driver code
 
+# First user inputs mistery word.
 puts "Please provide a word, so we can start the guessing game:"
 word = gets.chomp.strip.downcase
 word_game = WordGame.new(word)
 puts "Your mistery word has #{word_game.incomplete_word.length} characters."
 puts word_game.incomplete_word
 
+# Second user guesses the character in the mistery word
 while word_game.count_guesses < word_game.max_guesses
 	puts "Please provide a character:"
-	character = gets.chomp.strip.downcase
+	character = gets.chomp.downcase
+	if character.length != 1
+		puts "Wrong input!!!"
+		next
+	end
+	if word_game.guessed_characters.include?(character)
+		puts "You've already tried this character, try another one!"
+		next
+	end
 	puts word_game.include?(character) ? "Good Job! :)" : "Maybe next time. :("
 	puts word_game.incomplete_word
 	break if word_game.won?
