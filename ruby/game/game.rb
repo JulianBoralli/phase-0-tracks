@@ -17,6 +17,7 @@
 
 # - New instances are created with the guess word parameter
 # - An instance is capable of calculating the max guesses and keeping track of guesses
+# - An instance has an incompleted version of the word, that it updates when new character are guessed correctly
 # - An instance can check if a character is included or not?
 # - An instance knows if the user has won the game or not
 
