@@ -126,6 +126,32 @@ loop do
 
 end
 
+# What did you learn about pseudocode from working on this challenge?
+# 	I wasn't using input/output descriptions explicitly, I think that is 
+# 	somthing I learned on this challenge and it seems very helpful.
+
+# What are the tradeoffs of using arrays and hashes for this challenge?
+# 	Arrays are ordered, which makes it easy loop through information. But when 
+# 	you need a key to access a specif value, hashes are powerful.
+
+# What does a method return?
+# 	Either your last line of code, or whatever the code you explicitly
+# 	tell it to return, with a "return" syntax.
+
+# What kind of things can you pass into methods as arguments?
+# 	Any type of object.
+
+# How can you pass information between methods?
+# 	You set parameter in a method that receives the information. 
+# 	When you call that method, you provide arguments that match
+# 	the specified parameters of the method.
+
+# What concepts were solidified in this challenge, and what concepts are still confusing?
+# 	I think I solidified the concept of pointers. When we pass a hash or array
+# 	as arguments, we are passing pointers to the object in memory. So when we change it
+# 	inside the method, we are changing the original object. That doesn't happens with 
+# 	interges for example. 
+
 
 
 
