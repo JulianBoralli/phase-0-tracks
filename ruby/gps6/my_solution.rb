@@ -101,3 +101,6 @@ VirusPredictor.output_each_state
 
 #=======================================================================
 # Reflection Section
+# This pairing session helped to understand design decisions 
+# that can improve the program, such as having a class method
+# that generates an analysis for all instances of class.
