@@ -24,12 +24,32 @@ var longest_string = function(string_array) {
 	return longest;
 }
 
+// Create a function that takes two objects as input
+// loop through the keys and values of the first object 
+// and check if the is a key with the same value in the second obj.
+// if there is, stop the loop and return true, else, return false 
+// after the loop finishes.
+
+var compare_objects = function(obj1, obj2) {
+	for (var key in obj1) {
+  	if (obj2[key] == obj1[key]) {
+  		return true;
+  	}
+  }
+  return false;
+}
+ 
 
 
 
-// Driver Code
+// Driver Code for longest string
 
 var test_long_string = ["long phrase","longest phrase","longer phrase", "longest phrase"];
-
-
 longest_string(test_long_string);
+
+// Driver code for comparing keys and values
+
+var obj1 = {name: "Steven", age: 53, gender: "male"};  
+var obj2 = {name: "Tamir", age: 53, gender: "female"};
+var result = compare_objects(obj1, obj2);
+console.log(result);
