@@ -39,6 +39,15 @@ var compare_objects = function(obj1, obj2) {
   return false;
 }
  
+// Create a function that takes an integer as input.
+// It loops the integer number of times to generate 
+// random strings of random length (1 to 10 characters).
+// Each string is shoveled into a new random_strings array.
+// It then returns the random_strings array.
+
+var random_strings = function(length) {
+
+}
 
 
 
