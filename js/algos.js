@@ -46,7 +46,17 @@ var compare_objects = function(obj1, obj2) {
 // It then returns the random_strings array.
 
 var random_strings = function(length) {
-
+	var random_strings = [];
+	for (var i = 0; i < length; i++) {
+		var number_characters = Math.ceil(Math.random()*10);
+		var word = "";
+		for (var c = 0; c < number_characters; c++) {
+			random_character = String.fromCharCode(Math.round(Math.random() * (122 - 97) + 97));
+			word = word + random_character;
+		}
+		random_strings[i] = word;
+	}
+	return random_strings;
 }
 
 
@@ -62,3 +72,7 @@ var obj1 = {name: "Steven", age: 53, gender: "male"};
 var obj2 = {name: "Tamir", age: 53, gender: "female"};
 var result = compare_objects(obj1, obj2);
 console.log(result);
+
+// Driver Code for random array
+
+console.log(random_strings(10));
