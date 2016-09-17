@@ -22,7 +22,7 @@ var longest_string = function(string_array) {
 		longest.forEach(function(long_string) { console.log(long_string); });
 	}
 	return longest;
-}
+};
 
 // Create a function that takes two objects as input
 // loop through the keys and values of the first object 
@@ -37,7 +37,7 @@ var compare_objects = function(obj1, obj2) {
   	}
   }
   return false;
-}
+};
  
 // Create a function that takes an integer as input.
 // It loops the integer number of times to generate 
@@ -51,39 +51,52 @@ var random_strings = function(length) {
 		var number_characters = Math.ceil(Math.random()*10);
 		var word = "";
 		for (var c = 0; c < number_characters; c++) {
-			random_character = String.fromCharCode(Math.round(Math.random() * (122 - 97) + 97));
+			var random_character = String.fromCharCode(Math.round(Math.random() * (122 - 97) + 97));
 			word = word + random_character;
 		}
 		random_strings[i] = word;
 	}
 	return random_strings;
-}
+};
 
 
 
 // Driver Code for longest string
 
-var test_long_string = ["long phrase","longest phrase","longer phrase", "longest phrase"];
+var test_long_string = ["long phrase","longest phrase","longer phrase"];
 longest_string(test_long_string);
-console.log("Testing longest string:")
-console.log("--------------------------------")
+console.log("Testing longest string:");
+console.log("--------------------------------");
 
 // Driver code for comparing keys and values
 
 var obj1 = {name: "Steven", age: 53, gender: "male"};  
 var obj2 = {name: "Tamir", age: 53, gender: "female"};
 var result = compare_objects(obj1, obj2);
-console.log("Testing two objects comparison:")
+console.log("Testing two objects comparison:");
 console.log(result);
-console.log("--------------------------------")
+console.log("--------------------------------");
 
 // Driver Code for random array
 
+// for (var i = 0; i < 3; i++) {
+// 	console.log("Testing random array:");
+// 	var random_length = Math.ceil(Math.random()*10);
+// 	var random_strings_result = random_strings(random_length);
+// 	console.log(random_strings_result);
+// 	longest_string(random_strings_result);
+// }
+// console.log("--------------------------------");
+
+var random_strings_results = [];
 for (var i = 0; i < 10; i++) {
-	console.log("Testing random array:")
 	var random_length = Math.ceil(Math.random()*10);
-	var random_strings_result = random_strings(random_length);
-	console.log(random_strings_result);
-	longest_string(random_strings_result);
+	random_strings_results[i] = random_strings(random_length);
 }
-console.log("--------------------------------")
+console.log("--------------------------------");
+
+random_strings_results.forEach(function(string_array) { 
+	console.log("Testing random array:");
+	console.log(string_array);
+	longest_string(string_array); 
+});
