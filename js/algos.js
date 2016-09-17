@@ -65,14 +65,25 @@ var random_strings = function(length) {
 
 var test_long_string = ["long phrase","longest phrase","longer phrase", "longest phrase"];
 longest_string(test_long_string);
+console.log("Testing longest string:")
+console.log("--------------------------------")
 
 // Driver code for comparing keys and values
 
 var obj1 = {name: "Steven", age: 53, gender: "male"};  
 var obj2 = {name: "Tamir", age: 53, gender: "female"};
 var result = compare_objects(obj1, obj2);
+console.log("Testing two objects comparison:")
 console.log(result);
+console.log("--------------------------------")
 
 // Driver Code for random array
 
-console.log(random_strings(10));
+for (var i = 0; i < 10; i++) {
+	console.log("Testing random array:")
+	var random_length = Math.ceil(Math.random()*10);
+	var random_strings_result = random_strings(random_length);
+	console.log(random_strings_result);
+	longest_string(random_strings_result);
+}
+console.log("--------------------------------")
