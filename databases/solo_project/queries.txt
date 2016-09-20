@@ -1,0 +1,113 @@
+
+#SQL Queries
+
+
+#Display the information in one table (either table is fine).
+
+sqlite> SELECT * FROM clients;
+
+1|John|true|15
+2|Mary|true|35
+3|Tyler|false|3
+4|Sandy|false|1
+5|Luke|true|14
+
+
+#Update an item that meets some condition (you can choose a condition that makes sense).
+
+sqlite> UPDATE clients SET visits=2 WHERE name='Sandy';
+
+sqlite> SELECT * FROM clients;
+
+1|John|true|15
+2|Mary|true|35
+3|Tyler|false|3
+4|Sandy|false|2
+5|Luke|true|14
+
+
+#Display the information in both tables using one query.
+
+sqlite> SELECT * FROM clients JOIN orders ON clients.id=orders.client_id;
+
+3|Tyler|false|3|Hamburguer|5.99|1|3
+2|Mary|true|35|Hamburguer|5.99|2|2
+2|Mary|true|35|Lemonade|5.99|3|2
+1|John|true|15|Pizza|10.34|3|1
+5|Luke|true|14|Coke|1.99|3|5
+1|John|true|15|Coke|1.99|2|1
+4|Sandy|false|2|Coke|1.99|2|4
+4|Sandy|false|2|Mac n Cheese|7.99|2|4
+
+
+#Display a narrower selection of columns (fewer columns than all of them, in other words) from both tables using one query.
+
+SELECT clients.name, orders.name, orders.quantity FROM clients JOIN orders ON clients.id=orders.client_id;
+
+Tyler|Hamburguer|1
+Mary|Hamburguer|2
+Mary|Lemonade|3
+John|Pizza|3
+Luke|Coke|3
+John|Coke|2
+Sandy|Coke|2
+Sandy|Mac n Cheese|2
+
+#Delete an item that meets some condition (you can choose a condition that makes sense).
+
+sqlite> DELETE FROM orders WHERE name='Mac n Cheese';
+
+sqlite> SELECT * FROM orders;
+
+Hamburguer|5.99|1|3
+Hamburguer|5.99|2|2
+Lemonade|5.99|3|2
+Pizza|10.34|3|1
+Coke|1.99|3|5
+Coke|1.99|2|1
+Coke|1.99|2|4
+
+#Try a few different joins in your database, and record the commands and the output.
+
+Good Bookmark: http://www.w3schools.com/sql/sql_join.asp
+
+INNER JOIN: Returns all rows when there is at least one match in BOTH tables
+LEFT JOIN: Return all rows from the left table, and the matched rows from the right table
+RIGHT JOIN: Return all rows from the right table, and the matched rows from the left table
+FULL JOIN: Return all rows when there is a match in ONE of the tables
+
+sqlite> SELECT clients.name, orders.name, orders.quantity FROM clients JOIN orders ON clients.id=orders.client_id;
+
+Tyler|Hamburguer|1
+Mary|Hamburguer|2
+Mary|Lemonade|3
+John|Pizza|3
+Luke|Coke|3
+John|Coke|2
+Sandy|Coke|2
+
+sqlite> SELECT clients.name, orders.name, orders.quantity FROM clients INNER JOIN orders ON clients.id=orders.client_id;
+
+Tyler|Hamburguer|1
+Mary|Hamburguer|2
+Mary|Lemonade|3
+John|Pizza|3
+Luke|Coke|3
+John|Coke|2
+Sandy|Coke|2
+
+sqlite> SELECT clients.name, orders.name, orders.quantity FROM clients LEFT JOIN orders ON clients.id=orders.client_id;
+
+John|Coke|2
+John|Pizza|3
+Mary|Hamburguer|2
+Mary|Lemonade|3
+Tyler|Hamburguer|1
+Sandy|Coke|2
+Luke|Coke|3
+
+sqlite> SELECT clients.name, orders.name, orders.quantity FROM clients RIGHT JOIN orders ON clients.id=orders.client_id;
+
+Error: RIGHT and FULL OUTER JOINs are not currently supported
+sqlite> 
+
