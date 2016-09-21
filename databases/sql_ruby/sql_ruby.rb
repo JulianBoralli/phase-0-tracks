@@ -65,9 +65,36 @@ def create_todo( db, name, due_date, project_id, member_id)
 end
 
 
+# Code Used to Generate 100 rows in each table
+
+# 100.times do 
+# 	create_project(db, Faker::Beer.name, Faker::Date.backward(100).to_s, Faker::Date.forward(100).to_s)
+
+# 	faker_name = Faker::Name.name
+# 	create_team_members(db, faker_name, Faker::Internet.email(faker_name))
+
+# 	create_todo(db, Faker::Lorem.word, Faker::Date.forward(100).to_s, (rand()*100).ceil, (rand()*100).ceil)
+# end
+
 # Driver Code
-# create_project(db, "Project 2", Date.today.to_s, Date.today.next_year.to_s)
+while true do
+	puts "What would you like to do:"
+	puts "To list projects, type: \"projects\""
+	puts "To list team members, type: \"team\""
+	puts "To list todos, type: \"todo\""
 
-# create_team_members(db, "John", "john@gmail.com")
+	input = gets.chomp.downcase
+	case input
+	when "projects"
+		puts"OK1"
+	when "team"
+		puts"OK2"
+	when "todo"
+		puts"OK3"
+	else
+		puts "Ops"
+		break
+	end
 
-create_todo(db, "Task 1", Date.today.next_month.to_s, 1, 1)
+end
+
