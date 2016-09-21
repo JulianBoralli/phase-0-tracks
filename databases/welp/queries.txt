@@ -1,0 +1,33 @@
+RELEASE 2: View a Many-to-Many Relationship
+2. Joining three tables:
+INPUT:
+sqlite> SELECT *
+   ...> FROM reviews JOIN users ON reviews.user_id = users.id
+   ...> JOIN businesses ON reviews.business_id = businesses.id;
+
+OUTPUT:
+1|4|Love the mayonaise!|1|1|1|John|Smith|1|Hardee's
+2|1|HATED the mayonaise!|2|2|2|Pocahontas|Smith|2|Carl's Jr.
+3|3|Indifferent!|3|3|3|Karen|Harshbarger|3|Goodyear
+4|5|GREAT BURGER|1|4|4|Blake|Lively|1|Hardee's
+
+3. Joining three tables (non repetitive output):
+INPUT:
+sqlite> SELECT users.first_name, users.last_name, businesses.name, reviews.stars, reviews.comment
+   ...> FROM reviews JOIN users ON reviews.user_id = users.id
+   ...> JOIN businesses ON reviews.business_id = businesses.id;
+
+OUTPUT:
+John|Smith|Hardee's|4|Love the mayonaise!
+Pocahontas|Smith|Carl's Jr.|1|HATED the mayonaise!
+Karen|Harshbarger|Goodyear|3|Indifferent!
+Blake|Lively|Hardee's|5|GREAT BURGER
+
+4. View data of all three tables for one particular business
+INPUT:
+sqlite> SELECT users.first_name, users.last_name, businesses.name, reviews.stars, reviews.comment
+   ...> FROM reviews JOIN users ON reviews.user_id = users.id
+   ...> JOIN businesses ON reviews.business_id = businesses.id
+   ...> WHERE businesses.name="Goodyear";
+OUTPUT:
+Karen|Harshbarger|Goodyear|3|Indifferent!
