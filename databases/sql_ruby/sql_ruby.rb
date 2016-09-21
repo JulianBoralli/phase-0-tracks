@@ -76,23 +76,75 @@ end
 # 	create_todo(db, Faker::Lorem.word, Faker::Date.forward(100).to_s, (rand()*100).ceil, (rand()*100).ceil)
 # end
 
+def member_todos(db, name)	
+	db.execute("SELECT team_members.name, todo.name, todo.due_date FROM team_members 
+		JOIN todo ON team_members.member_id=todo.member_id WHERE team_members.name = ?", [name])
+end
+
 # Driver Code
 while true do
+	puts "-------------------------------------"
 	puts "What would you like to do:"
 	puts "To list projects, type: \"projects\""
 	puts "To list team members, type: \"team\""
-	puts "To list todos, type: \"todo\""
+	puts "To list all todos, type: \"todo\""
+	puts "To list todos of a team member, type: \"member todo\""
+	puts "To insert new project, type: \"new project\""
+	puts "To insert new team member, type: \"new member\""
+	puts "To insert new project, type: \"new todo\""
+	puts "Type anything else to exit the program"
+	puts "-------------------------------------"
 
 	input = gets.chomp.downcase
+
 	case input
 	when "projects"
-		puts"OK1"
+		db.execute("SELECT * FROM projects").each do |project|
+			puts "#{project[1]}: starts #{project[2]} and ends #{project[3]}"
+		end
 	when "team"
-		puts"OK2"
+		db.execute("SELECT * FROM team_members").each do |team_member|
+			puts "#{team_member[1]}: #{team_member[2]}"
+		end
 	when "todo"
-		puts"OK3"
+		db.execute("SELECT * FROM todo").each do |todo|
+			puts "#{todo[1]} is due: #{todo[2]}"
+		end
+	when "member todo"
+		puts "What's the name of the team member:"
+		member = gets.chomp
+		member_todos(db, member).each do |todo|
+			puts "#{todo[0]}'s todo: #{todo[1]} is due #{todo[2]}"
+		end
+	when "new project"
+		puts "Type your information in the following format:"
+		puts "name, start_date, end_date"
+		project_info = gets.chomp.strip
+		project_info = project_info.split(",")
+		project_name = project_info[0].strip
+		project_start_date = Date.parse(project_info[1]).to_s
+		project_end_date = Date.parse(project_info[2]).to_s
+		create_project( db, project_name, project_start_date, project_end_date)
+	when "new member"
+		puts "Type your information in the following format:"
+		puts "name, email"
+		member_info = gets.chomp.strip
+		member_info = member_info.split(",")
+		member_name = member_info[0].strip
+		member_email = member_info[1].strip
+		create_team_members( db, member_name, member_email)
+	when "new todo"
+		puts "Type your information in the following format:"
+		puts "name, due_date, project_id, member_id"
+		todo_info = gets.chomp.strip
+		todo_info = todo_info.split(",")
+		todo_name = todo_info[0].strip
+		todo_due_date = Date.parse(todo_info[1]).to_s
+		todo_project_id = todo_info[2].to_i
+		todo_member_id = todo_info[3].to_i
+		create_todo(db, todo_name, todo_due_date, todo_project_id, todo_member_id)
 	else
-		puts "Ops"
+		puts "Thanks, bye bye!"
 		break
 	end
 
