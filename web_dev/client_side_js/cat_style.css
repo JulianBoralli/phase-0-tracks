@@ -1,0 +1,22 @@
+body {
+  background-color:lightblue;
+}
+
+header {
+  border: 3px solid darkgreen;
+  background-color: limegreen;
+}
+
+main {
+  width:70%;
+}
+
+#cat_stats {
+  float:right;
+  border: 3px solid blue;
+  padding: 5px;
+}
+
+footer {
+  text-align: center;
+}
