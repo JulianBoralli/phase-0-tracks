@@ -97,3 +97,8 @@ get '/:item/:value' do |item, value|
     search
   end
 end
+
+get '/index' do
+  # send_file 'index.html'
+  File.read('index.html')
+end
