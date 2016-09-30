@@ -31,15 +31,15 @@ post '/students' do
   	end
   end
   p flag
-  p campus
+  p campus_id
 
   if flag
 	db.execute("INSERT INTO new_students (name, campus_id, age) VALUES (?,?,?)", [params['name'], campus_id, params['age'].to_i])  	
   else
-	db.execute("INSERT INTO campuses (name) VALUES (?)", [params['campus']])  
-	campus_id = db.execute("SELECT id FROM campuses WHERE name= (?)", params['campus'])
+	db.execute("INSERT INTO campuses (name) VALUES (?)", params['campus'])  
+	campus_id = db.execute("SELECT id FROM campuses WHERE name=(?)", params['campus'])
 	p campus_id
-	db.execute("INSERT INTO new_students (name, campus_id, age) VALUES (?,?,?)", [params['name'], campus_id, params['age'].to_i])  	
+	db.execute("INSERT INTO new_students (name, campus_id, age) VALUES (?,?,?)", [params['name'], campus_id[0][0], params['age'].to_i])  	
 	end	
   
   redirect '/'
