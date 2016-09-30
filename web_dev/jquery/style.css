@@ -1,0 +1,17 @@
+
+#canvas {
+	border: 1px solid #000000;
+	height: 600px;
+	background-color: lightBlue;
+
+}
+
+p {
+	color: blue;
+	display: inline;
+	font-size: 37px;
+}
+
+p:hover {
+	cursor: move;
+}
